@@ -1,0 +1,9 @@
+Options All -Indexes
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ # Si le fichier/dossier existe, ne pas réécrire
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteCond %{REQUEST_FILENAME} !-f
+ # Sinon, rediriger vers index.php
+ RewriteRule ^ index.php [QSA,L]
+</IfModule>

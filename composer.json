@@ -1,0 +1,26 @@
+{
+    "name": "raphaelahmn/click-clack",
+    "description": "\"Un projet fait par Alan, Julien et Raphaël\"",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Raphaelahmn\\ClickClack\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "you@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "slim/slim": "^4.0",
+        "slim/psr7": "^1.8",
+        "nyholm/psr7": "^1.8",
+        "nyholm/psr7-server": "^1.1",
+        "guzzlehttp/psr7": "^2",
+        "laminas/laminas-diactoros": "^3.8",
+        "slim/php-view": "^3.4"
+    }
+}
