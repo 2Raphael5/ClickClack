@@ -20,6 +20,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li>
+                        <a href="/login"><img src="/img/utilisateur.png" style="width: 4rem;"></a>
+                    </li>
                 </ul>
             </div>
         </div>
