@@ -1,5 +1,5 @@
 <?php
-namespace Raphaelahmn\ClickClack\Controller;
+namespace ClickClack\ClickClack\Controller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use DateTime;

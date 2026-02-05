@@ -1,10 +1,10 @@
 {
-    "name": "raphaelahmn/click-clack",
+    "name": "clickclack/clickclack",
     "description": "\"Un projet fait par Alan, Julien et Raphaël\"",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Raphaelahmn\\ClickClack\\": "src/"
+            "ClickClack\\ClickClack\\": "src/"
         }
     },
     "authors": [
