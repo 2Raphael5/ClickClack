@@ -1,5 +1,6 @@
 <?php
-namespace Raphaelahmn\Jardinier\Tool;
+namespace ClickClack\ClickClack\Tool;
+
 require_once "data.php";
 class Database
 {
