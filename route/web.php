@@ -10,9 +10,6 @@ use ClickClack\ClickClack\Controller\UserController;
 $app->get('/', [AccueilController::class, 'afficherPagePrincipale']);
 $app->post('/', [AccueilController::class, 'afficherPagePrincipale']);
 
-$app->get('/login', [UserController::class, 'afficherPageConnexion']);
-$app->post('/login', [UserController::class, 'afficherPageConnexion']);
-
 $app->get('/discussion', [DiscussionController::class, 'afficherPagePrincipale']);
 $app->post('/discussion', [DiscussionController::class, 'verifierDiscussion']);
 
@@ -24,4 +21,3 @@ $app->post('/register', [UserController::class, 'register']);
 
 $app->get('/logout', [UserController::class, 'logout']);
 
-$app->post('/discussion', [DiscussionController::class, 'verifierDiscussion']);
