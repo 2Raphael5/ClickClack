@@ -2,6 +2,7 @@
 namespace ClickClack\ClickClack\Controller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use ClickClack\ClickClack\Model\User;
 use DateTime;
 use Slim\Views\PhpRenderer;
 
@@ -12,8 +13,10 @@ class AccueilController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
-        
-        return $renderer->render($response, 'index.php', []);
+        $_SESSION["User"] = User::findById(1);
 
+        var_dump($_SESSION["User"]);
+        return $renderer->render($response, 'index.php', []);
+        
     }
 }

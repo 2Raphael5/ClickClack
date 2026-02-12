@@ -23,3 +23,5 @@ $app->get('/register', [UserController::class, 'afficherPageInscription']);
 $app->post('/register', [UserController::class, 'register']);
 
 $app->get('/logout', [UserController::class, 'logout']);
+
+$app->post('/discussion', [DiscussionController::class, 'verifierDiscussion']);
