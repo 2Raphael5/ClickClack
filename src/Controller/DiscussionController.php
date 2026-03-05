@@ -76,7 +76,6 @@ class DiscussionController
                 "discussion" => $discussion,
             ];
         } else {
-            echo "C PAS BON";
             die();
         }
         return $renderer->render($response, 'message.php', $data);
@@ -91,7 +90,7 @@ class DiscussionController
         $message = filter_input(INPUT_POST, "messageText", FILTER_SANITIZE_SPECIAL_CHARS);
         if (intval($args["idDiscussion"]) != 0 && $message != "") {
 
-            Message::add($message, intval($args["idDiscussion"]), $_SESSION["User"]->idUtilisateur);
+            Message::add($message, intval($args["idDiscussion"]), $_SESSION["User"]["idUtilisateur"]);
         }
         return $response
             ->withHeader("Location", "/discussion/" . intval($args["idDiscussion"]))

@@ -149,9 +149,11 @@ class User
      */
     public static function login(string $pseudo, string $motDePasse): User|false
     {
+        
         $sql = "SELECT idUtilisateur, pseudo, motDePasse, photoProfile
             FROM Utilisateur
-            WHERE pseudo = :pseudo";
+            WHERE pseudo = :pseudo;
+            ";
 
         $params = [":pseudo" => $pseudo];
         $data = Database::run($sql, $params)->fetch();
@@ -165,7 +167,6 @@ class User
         if (!password_verify($motDePasse, $data["motDePasse"])) {
             return false;
         }
-
         // Création et retour de l'objet User
         return new User(
             $data["idUtilisateur"],

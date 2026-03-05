@@ -75,7 +75,6 @@ class UserController
                 ->withHeader('Location', '/login')
                 ->withStatus(302);
         }
-
         $user = User::login($pseudo, $motDePasse);
         if ($user === false) {
             $_SESSION['error_login'] = "Identifiants incorrects.";
@@ -85,13 +84,12 @@ class UserController
         }
 
         // Enregistrer infos utilisateur
-        $_SESSION['user'] = [
+        $_SESSION['User'] = [
             'idUtilisateur' => $user->idUtilisateur,
             'pseudo'        => $user->pseudo,
             'motDePasse'    => $user->motDePasse,
             'photoProfile'  => $user->photoProfile,
         ];
-
         // Rediriger vers l’accueil
         return $response
             ->withHeader('Location', '/')

@@ -13,7 +13,6 @@ class AccueilController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
-        $_SESSION["User"] = User::findById(1);
         return $renderer->render($response, 'index.php', []);
         
     }
