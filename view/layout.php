@@ -26,6 +26,9 @@
                     <li>
                         <a href="/discussion"  class="navbar-brand">Discussions</a>
                     </li>
+                    <li>
+                        <a href="/publication/add"  class="navbar-brand">Ajouter une publication</a>
+                    </li>
                 </ul>
             </div>
         </div>
