@@ -23,6 +23,9 @@
                     <li>
                         <a href="/login"><img src="/img/utilisateur.png" style="width: 4rem;"></a>
                     </li>
+                    <li>
+                        <a href="/discussion"  class="navbar-brand">Discussions</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
 namespace ClickClack\ClickClack\Controller;
+use ClickClack\ClickClack\Model\Message;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use DateTime;
@@ -21,8 +22,8 @@ class DiscussionController
         $data = [
             "discussions" => Discussion::selectAll()
         ];
-        return $renderer->render($response, 'discussion.php', $data);
-        
+        return $renderer->render($response, 'discussions.php', $data);
+
     }
 
     public function verifierDiscussion(Request $request, Response $response, array $args): Response
@@ -34,11 +35,67 @@ class DiscussionController
             return $response
                 ->withHeader("Location", "/")
                 ->withStatus(302);
-        }
-        else {
+        } else {
             var_dump($_SESSION["User"]);
         }
-        return $renderer->render($response, 'discussion.php', []);
-        
+        return $renderer->render($response, 'ajoutDiscussion.php', []);
+
     }
+    public function ajouterDiscussion(Request $request, Response $response, array $args): Response
+    {
+        $renderer = new PhpRenderer("../view");
+        $renderer->setLayout("layout.php");
+
+        return $renderer->render($response, 'ajoutDiscussion.php', []);
+
+    }
+    public function verifierAjout(Request $request, Response $response, array $args): Response
+    {
+        $renderer = new PhpRenderer("../view");
+        $renderer->setLayout("layout.php");
+
+        $data = $request->getParsedBody();
+        $title = $data['discussion'];
+        Discussion::add($title);
+        return $response
+            ->withHeader("Location", "/discussion")
+            ->withStatus(302);
+    }
+    public function afficherPageMessage(Request $request, Response $response, array $args): Response
+    {
+        $renderer = new PhpRenderer("../view");
+        $renderer->setLayout("layout.php");
+        $data = [];
+
+        if (intval($args["idDiscussion"]) != 0) {
+            $messages = Message::selectAll(intval($args["idDiscussion"]));
+            $discussion = Discussion::selectById(intval($args["idDiscussion"]));
+
+            $data = [
+                "messages" => $messages,
+                "discussion" => $discussion,
+            ];
+        } else {
+            echo "C PAS BON";
+            die();
+        }
+        return $renderer->render($response, 'message.php', $data);
+    }
+
+    public function ajouterMessage(Request $request, Response $response, array $args): Response
+    {
+        $renderer = new PhpRenderer("../view");
+        $renderer->setLayout("layout.php");
+        $data = [];
+
+        $message = filter_input(INPUT_POST, "messageText", FILTER_SANITIZE_SPECIAL_CHARS);
+        if (intval($args["idDiscussion"]) != 0 && $message != "") {
+
+            Message::add($message, intval($args["idDiscussion"]), $_SESSION["User"]->idUtilisateur);
+        }
+        return $response
+            ->withHeader("Location", "/discussion/" . intval($args["idDiscussion"]))
+            ->withStatus(302);
+    }
+
 }

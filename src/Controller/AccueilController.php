@@ -14,8 +14,6 @@ class AccueilController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
         $_SESSION["User"] = User::findById(1);
-
-        var_dump($_SESSION["User"]);
         return $renderer->render($response, 'index.php', []);
         
     }

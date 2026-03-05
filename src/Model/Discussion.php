@@ -32,4 +32,23 @@ class Discussion
 
         return $result;
     }
+    public static function add(string $title){
+        $sql = "INSERT INTO Discussion(titre, idUtilisateur) VALUE(:title, :idCreateur)";
+        $param = [
+            ":title"=>$title,
+            ":idCreateur" => $_SESSION["User"]->idUtilisateur,
+        ];
+        Database::run($sql, $param);
+    }
+
+        public static function selectById(int $id)
+    {
+        $sql = "SELECT d.idDiscussion, d.titre, d.idUtilisateur FROM Discussion d WHERE d.idDiscussion = :id";
+            $param = [
+            ":id" => $id,
+            ];
+        
+        $result = Database::run($sql, $param)->fetch();
+        return new Discussion($result["idDiscussion"], $result["titre"], "", $result["idUtilisateur"]);
+    }
 }
