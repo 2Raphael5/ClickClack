@@ -5,7 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use ClickClack\ClickClack\Controller\AccueilController;
 use ClickClack\ClickClack\Controller\DiscussionController;
 use ClickClack\ClickClack\Controller\UserController;
-
+use ClickClack\ClickClack\Controller\PublicationController;
 
 $app->get('/', [AccueilController::class, 'afficherPagePrincipale']);
 $app->post('/', [AccueilController::class, 'afficherPagePrincipale']);
@@ -26,3 +26,6 @@ $app->post('/discussion/add', [DiscussionController::class, 'verifierAjout']);
 
 $app->get('/discussion/{idDiscussion}', [DiscussionController::class, 'afficherPageMessage']);
 $app->post('/discussion/{idDiscussion}', [DiscussionController::class, 'ajouterMessage']);
+
+$app->get('/publication/add', [PublicationController::class, 'afficherPageAjoutPublication']);
+$app->post('/publication/add', [PublicationController::class, 'verifierPageAjoutPublication']);
