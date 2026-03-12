@@ -29,3 +29,7 @@ $app->post('/discussion/{idDiscussion}', [DiscussionController::class, 'ajouterM
 
 $app->get('/publication/add', [PublicationController::class, 'afficherPageAjoutPublication']);
 $app->post('/publication/add', [PublicationController::class, 'verifierPageAjoutPublication']);
+
+$app->get('/profil', [UserController::class, 'afficherProfil']);
+$app->get('/profil/edit', [UserController::class, 'afficherEditionProfil']);
+$app->post('/profil/edit', [UserController::class, 'updateProfil']);

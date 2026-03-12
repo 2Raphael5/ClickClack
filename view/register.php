@@ -19,8 +19,9 @@
         <label for="photoProfile" class="form-label">Photo de profil :</label>
         <select name="photoProfile" id="photoProfile" class="form-select" required>
             <option value="">---</option>
-            <option value="Exemple1.png">Exemple1</option>
-            <option value="Exemple2.png">Exemple2</option>
+            <option value="kiwi.jpg">Kiwi</option>
+            <option value="crabe.jpg">Crabe</option>
+            <option value="ananas.png">Ananas</option>
         </select>
     </div>
 

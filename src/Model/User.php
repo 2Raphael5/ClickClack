@@ -149,7 +149,7 @@ class User
      */
     public static function login(string $pseudo, string $motDePasse): User|false
     {
-        
+
         $sql = "SELECT idUtilisateur, pseudo, motDePasse, photoProfile
             FROM Utilisateur
             WHERE pseudo = :pseudo;
@@ -175,4 +175,39 @@ class User
             $data["photoProfile"]
         );
     }
+
+    /**
+     * Modifie un utilisateur (pseudo, mot de passe, image)
+     */
+    public function update(string $pseudo, ?string $motDePasse, string $photoProfile): void
+    {
+        if ($motDePasse === null || $motDePasse === '') {
+            $sql = "UPDATE Utilisateur
+                    SET pseudo = :pseudo,
+                        photoProfile = :photoProfile
+                    WHERE idUtilisateur = :idUtilisateur";
+
+            $params = [
+                ':pseudo' => $pseudo,
+                ':photoProfile' => $photoProfile,
+                ':idUtilisateur' => $this->idUtilisateur,
+            ];
+        } else {
+            $sql = "UPDATE Utilisateur
+                    SET pseudo = :pseudo,
+                        motDePasse = :motDePasse,
+                        photoProfile = :photoProfile
+                    WHERE idUtilisateur = :idUtilisateur";
+
+            $params = [
+                ':pseudo' => $pseudo,
+                ':motDePasse' => password_hash($motDePasse, PASSWORD_DEFAULT),
+                ':photoProfile' => $photoProfile,
+                ':idUtilisateur' => $this->idUtilisateur,
+            ];
+        }
+
+        Database::run($sql, $params);
+    }
+
 }
