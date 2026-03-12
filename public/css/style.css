@@ -85,3 +85,34 @@
     border-radius:50%;
     font-size:18px;
 }
+.publication-card{
+    width: 22rem;
+    border-radius: 15px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 15px;
+}
+
+.publication-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.publication-img{
+    height: 250px;
+    object-fit: cover;
+}
+
+.publication-text{
+    font-size: 1rem;
+    color: #444;
+}
+
+.publication-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

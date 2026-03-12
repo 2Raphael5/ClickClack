@@ -1,5 +1,6 @@
 <?php
 namespace ClickClack\ClickClack\Controller;
+use ClickClack\ClickClack\Model\Publication;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use ClickClack\ClickClack\Model\User;
@@ -20,10 +21,11 @@ class PublicationController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
-        var_dump($_FILES);
-        die;
         $allow = ["jpg", "png"];
         $randomName = null;
+
+        $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_SPECIAL_CHARS);
+
         $errors = [];
         if (isset($_FILES['img']) && !empty($_FILES['img']['name'])) {
             $info = explode('.', strtolower($_FILES['img']['name']));
@@ -41,7 +43,7 @@ class PublicationController
                 if (!move_uploaded_file($_FILES['img']['tmp_name'], $imgPath)) {
                     array_push($errors, "Erreur lors du déplacement du fichier.");
                 } else {
-                    
+
                     $oldImg = $article['img'] ?? null;
                     if ($oldImg && $oldImg !== 'default.jpg') {
                         $oldPath = __DIR__ . "/../../public/img/" . $oldImg;
@@ -52,8 +54,33 @@ class PublicationController
                 }
             }
         }
-       var_dump(isset($_FILES['img']));
+
+        if (empty($errors)) {
+            Publication::addPublication($randomName, $text);
+            return $response
+                ->withHeader("Location", "/")
+                ->withStatus(302);
+        }
         return $renderer->render($response, 'publication.php', []);
+
+    }
+
+    public function supprimerPublication(Request $request, Response $response, array $args): Response
+    {
+        $renderer = new PhpRenderer("../view");
+        $renderer->setLayout("layout.php");
+
+        $publications = null;
+        if (intval($args["idPublication"], 10) != 0) {
+            $publications = Publication::getById(intval($args["idPublication"]));
+            if ($publications != null && $publications->idUtilisateur == $_SESSION["User"]["idUtilisateur"]) {
+                Publication::deletePublication($args["idPublication"]);
+            }
+        }
+
+        return $response
+            ->withHeader("Location", "/")
+            ->withStatus(302);
 
     }
 }

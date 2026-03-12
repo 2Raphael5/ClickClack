@@ -19,14 +19,46 @@ class Publication
         $this->idUtilisateur = $idUtilisateur;
     }
 
-    public function addPublication(string $img, string $text, int $idUtilisateur)
+    public static function addPublication(string $img, string $text)
     {
-        $sql = "INSERT INTO Message(image, text, idUtilisateur) VALUE(:image, :text, :idUtilisateur)";
+        $sql = "INSERT INTO Publication(image, text, idUtilisateur) VALUE(:image, :text, :idUtilisateur)";
         $param = [
-            ":img" => $img,
+            ":image" => $img,
             ":text" => $text,
-            ":idUtilisateur" => $idUtilisateur,
+            ":idUtilisateur" => $_SESSION["User"]["idUtilisateur"],
         ];
         Database::run($sql, $param);
+    }
+
+    public static function getAllPublication()
+    {
+        $sql = "SELECT idPublication, image, text, idUtilisateur FROM Publication";
+        $data = Database::run($sql)->fetchAll();
+        $result = [];
+
+        foreach ($data as $key => $publication) {
+            array_push($result, new Publication($publication["idPublication"], $publication["image"], $publication["text"], $publication["idUtilisateur"]));
+        }
+        return $result;
+    }
+
+    public static function deletePublication(int $id)
+    {
+        $sql = "DELETE FROM Publication WHERE idPublication = :id";
+        $param = [
+            ":id" => $id
+        ];
+        Database::run($sql, $param);
+    }
+
+    public static function getById(int $id)
+    {
+        $sql = "SELECT idPublication, image, text, idUtilisateur FROM Publication WHERE idPublication = :id";
+        $param = [
+            ":id" => $id,
+        ];
+        $publication = Database::run($sql, $param)->fetch();
+
+        return new Publication($publication["idPublication"], $publication["image"], $publication["text"], $publication["idUtilisateur"]);
     }
 }

@@ -1,7 +1,7 @@
-<form action="/publication/add" method="post" class="mx-auto" style="max-width: 400px;">
+<form action="/publication/add" method="post" class="mx-auto" style="max-width: 400px;" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="img">Image</label>
-        <input type="file" name="img" accept="image/jpeg,image/png">
+        <input type="file" name="img" accept="image/jpeg,image/png" required>
     </div>
 
     <div class="mb-3">

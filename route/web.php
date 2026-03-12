@@ -33,3 +33,6 @@ $app->post('/publication/add', [PublicationController::class, 'verifierPageAjout
 $app->get('/profil', [UserController::class, 'afficherProfil']);
 $app->get('/profil/edit', [UserController::class, 'afficherEditionProfil']);
 $app->post('/profil/edit', [UserController::class, 'updateProfil']);
+
+$app->get('/publication/delete/{idPublication}', [PublicationController::class, 'supprimerPublication']);
+$app->post('/publication/delete/{idPublication}', [PublicationController::class, 'supprimerPublication']);
