@@ -36,7 +36,7 @@ class Discussion
         $sql = "INSERT INTO Discussion(titre, idUtilisateur) VALUE(:title, :idCreateur)";
         $param = [
             ":title"=>$title,
-            ":idCreateur" => $_SESSION["User"]->idUtilisateur,
+            ":idCreateur" => $_SESSION["User"]["idUtilisateur"],
         ];
         Database::run($sql, $param);
     }
