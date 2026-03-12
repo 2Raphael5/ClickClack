@@ -4,7 +4,7 @@ foreach ($publications as $key => $publication) {
     ?>
     <div class="d-flex justify-content-center my-4">
         <div class="card publication-card">
-            <img src="<?= "/img/" . $publication->img ?>" class="card-img-top publication-img" alt="publication image">
+            <img src="<?= "/publication/" . $publication->img ?>" class="card-img-top publication-img" alt="publication image">
 
             <div class="card-body">
                 <p class="card-text publication-text">

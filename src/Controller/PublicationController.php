@@ -37,7 +37,7 @@ class PublicationController
 
                 do {
                     $randomName = uniqid() . "_" . urlencode(basename($_FILES['img']['name']));
-                    $imgPath = __DIR__ . "/../../public/img/" . $randomName;
+                    $imgPath = __DIR__ . "/../../public/publication/" . $randomName;
                 } while (file_exists($imgPath));
 
                 if (!move_uploaded_file($_FILES['img']['tmp_name'], $imgPath)) {
@@ -46,7 +46,7 @@ class PublicationController
 
                     $oldImg = $article['img'] ?? null;
                     if ($oldImg && $oldImg !== 'default.jpg') {
-                        $oldPath = __DIR__ . "/../../public/img/" . $oldImg;
+                        $oldPath = __DIR__ . "/../../public/publication/" . $oldImg;
                         if (file_exists($oldPath)) {
                             unlink($oldPath);
                         }
