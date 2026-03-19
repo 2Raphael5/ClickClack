@@ -11,7 +11,7 @@ foreach ($publications as $key => $publication) {
                     <?= $publication->text ?>
                 </p>
                 <?php
-                if ($publication->idUtilisateur == $_SESSION["User"]["idUtilisateur"]) {
+                if (!empty($_SESSION["User"]["idUtilisateur"])&&$publication->idUtilisateur == $_SESSION["User"]["idUtilisateur"]) {
                     ?>
                     <a href=<?="/publication/delete/". $publication->idPublication ?> class="btn btn-danger">Supprimer</a>
                     <?php
