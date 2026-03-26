@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="message-bubble">
-                        <?= htmlspecialchars($message->text) ?>
+                        <?= htmlspecialchars_decode($message->text) ?>
                     </div>
 
                 </div>
