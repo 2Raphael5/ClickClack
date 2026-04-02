@@ -27,8 +27,9 @@
     </div>
 
     <button type="submit" class="btn btn-success w-100">Enregistrer</button>
+    <p class="mt-3 text-center">
+        <a href="/profil" class="btn btn-danger w-100">
+            Annuler
+        </a>
+    </p>
 </form>
-
-<p class="mt-3 text-center">
-    <a href="/profil">Annuler</a>
-</p>
