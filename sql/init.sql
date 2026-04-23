@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 29 jan. 2026 à 15:03
+-- Généré le : jeu. 23 avr. 2026 à 13:08
 -- Version du serveur : 10.11.14-MariaDB-0ubuntu0.24.04.1
--- Version de PHP : 8.4.17
+-- Version de PHP : 8.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,6 +22,18 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `ClickClack` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ClickClack`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Aime`
+--
+
+CREATE TABLE `Aime` (
+  `idAime` int(11) NOT NULL,
+  `idUtilisateur` int(11) NOT NULL,
+  `idPublication` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -79,6 +91,14 @@ CREATE TABLE `Utilisateur` (
 --
 
 --
+-- Index pour la table `Aime`
+--
+ALTER TABLE `Aime`
+  ADD PRIMARY KEY (`idAime`),
+  ADD KEY `idPublication_Aime` (`idPublication`),
+  ADD KEY `idUtilisateur_Aime` (`idUtilisateur`);
+
+--
 -- Index pour la table `Discussion`
 --
 ALTER TABLE `Discussion`
@@ -111,6 +131,12 @@ ALTER TABLE `Utilisateur`
 --
 
 --
+-- AUTO_INCREMENT pour la table `Aime`
+--
+ALTER TABLE `Aime`
+  MODIFY `idAime` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `Discussion`
 --
 ALTER TABLE `Discussion`
@@ -137,6 +163,13 @@ ALTER TABLE `Utilisateur`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `Aime`
+--
+ALTER TABLE `Aime`
+  ADD CONSTRAINT `idPublication_Aime` FOREIGN KEY (`idPublication`) REFERENCES `Publication` (`idPublication`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `idUtilisateur_Aime` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Discussion`
