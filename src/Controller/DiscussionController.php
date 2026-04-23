@@ -13,12 +13,6 @@ class DiscussionController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
-
-        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
-            return $response
-                ->withHeader("Location", "/")
-                ->withStatus(302);
-        }
         $data = [
             "discussions" => Discussion::selectAll()
         ];
@@ -45,7 +39,11 @@ class DiscussionController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
-
+        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
+            return $response
+                ->withHeader("Location", "/")
+                ->withStatus(302);
+        }
         return $renderer->render($response, 'ajoutDiscussion.php', []);
 
     }
@@ -54,6 +52,11 @@ class DiscussionController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
 
+        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
+            return $response
+                ->withHeader("Location", "/")
+                ->withStatus(302);
+        }
         $data = $request->getParsedBody();
         $title = $data['discussion'];
         Discussion::add($title);
@@ -86,7 +89,11 @@ class DiscussionController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
         $data = [];
-
+        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
+            return $response
+                ->withHeader("Location", "/discussion/".$args["idDiscussion"])
+                ->withStatus(302);
+        }
         $message = filter_input(INPUT_POST, "messageText", FILTER_SANITIZE_SPECIAL_CHARS);
         if (intval($args["idDiscussion"]) != 0 && $message != "") {
 

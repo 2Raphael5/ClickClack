@@ -14,6 +14,11 @@ class PublicationController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
+        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
+            return $response
+                ->withHeader("Location", "/")
+                ->withStatus(302);
+        }
         return $renderer->render($response, 'publication.php', []);
 
     }
@@ -21,6 +26,12 @@ class PublicationController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
+
+        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
+            return $response
+                ->withHeader("Location",  "/")
+                ->withStatus(302);
+        }
         $allow = ["jpg", "png"];
         $randomName = null;
 
@@ -70,6 +81,11 @@ class PublicationController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
 
+        if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
+            return $response
+                ->withHeader("Location",  "/")
+                ->withStatus(302);
+        }
         $publications = null;
         if (intval($args["idPublication"], 10) != 0) {
             $publications = Publication::getById(intval($args["idPublication"]));

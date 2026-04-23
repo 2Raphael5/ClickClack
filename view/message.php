@@ -32,11 +32,17 @@
 
     </div>
 
-    <form action="/discussion/<?= $discussion->idDiscussion ?>" method="post" class="chat-input">
 
+    <form action="/discussion/<?= $discussion->idDiscussion ?>" method="post" class="chat-input">
+    <?php
+    if (!empty($_SESSION['User'])) {
+    ?>
         <input type="text" name="messageText" placeholder="Écrire un message..." required>
 
         <button type="submit">➤</button>
+    <?php
+    }
+    ?>
 
     </form>
 
