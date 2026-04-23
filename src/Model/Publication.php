@@ -10,13 +10,15 @@ class Publication
     public string $img;
     public ?string $text;
     public int $idUtilisateur;
+    public string $pseudoUtilisateur;
 
-    public function __construct(int $idPublication, string $img, ?string $text, int $idUtilisateur)
+    public function __construct(int $idPublication, string $img, ?string $text, int $idUtilisateur, ?string $pseudoUtilisateur)
     {
         $this->idPublication = $idPublication;
         $this->img = $img;
         $this->text = $text;
         $this->idUtilisateur = $idUtilisateur;
+        $this->pseudoUtilisateur = $pseudoUtilisateur;
     }
 
     public static function addPublication(string $img, string $text)
@@ -32,13 +34,23 @@ class Publication
 
     public static function getAllPublication()
     {
-        $sql = "SELECT idPublication, image, text, idUtilisateur FROM Publication";
+        $sql = "SELECT 
+                p.idPublication, 
+                p.image, 
+                p.text, 
+                p.idUtilisateur,
+                u.pseudo AS pseudoUtilisateur
+            FROM Publication p
+            INNER JOIN Utilisateur u 
+                ON p.idUtilisateur = u.idUtilisateur";
+
         $data = Database::run($sql)->fetchAll();
         $result = [];
 
-        foreach ($data as $key => $publication) {
-            array_push($result, new Publication($publication["idPublication"], $publication["image"], $publication["text"], $publication["idUtilisateur"]));
+        foreach ($data as $publication) {
+            $result[] = new Publication((int) $publication["idPublication"], $publication["image"], $publication["text"], (int) $publication["idUtilisateur"], $publication["pseudoUtilisateur"]);
         }
+
         return $result;
     }
 
@@ -59,6 +71,6 @@ class Publication
         ];
         $publication = Database::run($sql, $param)->fetch();
 
-        return new Publication($publication["idPublication"], $publication["image"], $publication["text"], $publication["idUtilisateur"]);
+        return new Publication($publication["idPublication"], $publication["image"], $publication["text"], $publication["idUtilisateur"], null);
     }
 }
