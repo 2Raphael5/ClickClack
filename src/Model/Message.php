@@ -21,7 +21,7 @@ class Message
 
         public static function selectAll(int $idDiscussion)
     {
-        $sql = "SELECT m.idMessage, m.text, m.idDiscussion, m.idUtilisateur, u.pseudo  FROM Message m JOIN Utilisateur u ON u.idUtilisateur = m.idUtilisateur WHERE m.idDiscussion = :idDiscussion";
+        $sql = "SELECT m.idMessage, m.text, m.idDiscussion, m.idUtilisateur, u.pseudo  FROM Message m JOIN Utilisateur u ON u.idUtilisateur = m.idUtilisateur WHERE m.idDiscussion = :idDiscussion ORDER BY m.idMessage ASC;";
         $param = [":idDiscussion"=> $idDiscussion];
         $dataMessages = Database::run($sql, $param)->fetchAll();
         $result = [];

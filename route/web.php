@@ -6,6 +6,7 @@ use ClickClack\ClickClack\Controller\AccueilController;
 use ClickClack\ClickClack\Controller\DiscussionController;
 use ClickClack\ClickClack\Controller\UserController;
 use ClickClack\ClickClack\Controller\PublicationController;
+//require_once __DIR__ . '../public/script/main.js';
 
 $app->get('/', [AccueilController::class, 'afficherPagePrincipale']);
 $app->post('/', [AccueilController::class, 'afficherPagePrincipale']);

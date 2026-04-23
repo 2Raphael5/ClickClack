@@ -56,7 +56,7 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="/script/main.js"></script>
+    <script type="module" src="/script/main.js"></script>
 
 </body>
 
