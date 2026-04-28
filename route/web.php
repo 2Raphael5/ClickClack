@@ -37,3 +37,5 @@ $app->post('/profil/edit', [UserController::class, 'updateProfil']);
 
 $app->get('/publication/delete/{idPublication}', [PublicationController::class, 'supprimerPublication']);
 $app->post('/publication/delete/{idPublication}', [PublicationController::class, 'supprimerPublication']);
+
+$app->get('/publication/like/{id}', [AccueilController::class, 'like']);
