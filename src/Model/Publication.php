@@ -10,7 +10,7 @@ class Publication
     public string $img;
     public ?string $text;
     public int $idUtilisateur;
-    public string $pseudoUtilisateur;
+    public ?string $pseudoUtilisateur;
 
     public function __construct(int $idPublication, string $img, ?string $text, int $idUtilisateur, ?string $pseudoUtilisateur)
     {
