@@ -25,6 +25,9 @@ $app->get('/logout', [UserController::class, 'logout']);
 $app->get('/discussion/add', [DiscussionController::class, 'ajouterDiscussion']);
 $app->post('/discussion/add', [DiscussionController::class, 'verifierAjout']);
 
+$app->get('/discussion/perso/{idDiscussion}', [DiscussionController::class, 'afficherPageRecherchePersonne']);
+$app->post('/discussion/perso/{idDiscussion}/{idUtilisateur}', [DiscussionController::class, 'verifierAjoutPersonne']);
+
 $app->get('/discussion/{idDiscussion}', [DiscussionController::class, 'afficherPageMessage']);
 $app->post('/discussion/{idDiscussion}', [DiscussionController::class, 'ajouterMessage']);
 

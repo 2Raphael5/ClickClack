@@ -39,4 +39,9 @@ class Database
         $stmt->execute($params);
         return $stmt;
     }
+
+    public static function lastInsertId(): string
+    {
+        return self::db()->lastInsertId();
+    }
 }

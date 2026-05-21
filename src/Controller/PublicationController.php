@@ -66,7 +66,7 @@ class PublicationController
             }
         }
 
-        if (empty($errors)) {
+        if (empty($errors) && !empty($text)) {
             Publication::addPublication($randomName, $text);
             return $response
                 ->withHeader("Location", "/")

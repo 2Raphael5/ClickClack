@@ -1,11 +1,12 @@
 const URL_DISCUSSION_API = 'http://clickclack.cfpt.loc/API/main.php?id=';
 
+//Si tu veux voir l'api sur le web, vas ici: http://clickclack.cfpt.loc/API/main.php?id={idDeladiscussion}
+
 async function getAllMessagesFromOneDiscussion(id) {
     try {
         const response = await fetch(`${URL_DISCUSSION_API}${id}`);
         const messages = await response.json();
 
-        console.log(messages);
         const container = document.querySelector(".messages-box");
         container.innerHTML = "";
 
@@ -35,11 +36,8 @@ async function getAllMessagesFromOneDiscussion(id) {
         });
 
     } catch (e) {
-        console.error("Erreur API :", e);
     }
 }
-
-window.getAllMessagesFromOneDiscussion = getAllMessagesFromOneDiscussion;
 
 document.addEventListener("DOMContentLoaded", () => {
 

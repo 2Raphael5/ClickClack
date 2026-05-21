@@ -5,7 +5,31 @@
     </div>
 
     <div class="row g-4">
-        <?php foreach ($discussions as $discussion): ?>
+        
+        <h1>Dicussion privée</h1>
+        <?php foreach ($discussionsPrivate as $discussion): ?>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+
+                        <h5 class="card-title"><?= htmlspecialchars($discussion->titre) ?></h5>
+
+                        <p class="card-text text-muted mb-4">
+                            Créé par : <?= htmlspecialchars($discussion->nomUtilisateur) ?>
+                        </p>
+
+                        <a href="<?= '/discussion/' . $discussion->idDiscussion ?>"
+                            class="btn btn-outline-primary mt-auto w-100">Voir la discussion</a>
+                        <a href="<?= '/discussion/perso/' . $discussion->idDiscussion ?>"
+                            class="btn btn-outline-primary mt-auto w-100">Ajouté une personne</a>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+        <h1>Discussion public</h1>
+        <?php foreach ($discussionsPublic as $discussion): ?>
 
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card h-100 shadow-sm">

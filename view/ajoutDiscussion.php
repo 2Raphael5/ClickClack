@@ -13,6 +13,10 @@
                             <label for="discussion" class="form-label">Titre de la discussion</label>
                             <input type="text" name="discussion" id="discussion" class="form-control" required>
                         </div>
+                        <div>
+                            <label for="isPrivate" class="form-label">Discussion privée</label>
+                            <input type="checkbox" name="isPrivate" id="isPrivate">
+                        </div>
 
                         <button type="submit" class="btn btn-primary w-100">Créer la discussion</button>
 
