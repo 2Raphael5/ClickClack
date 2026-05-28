@@ -168,4 +168,3 @@ composer dump-autoload
     - nom de base (`DB_NAME`)
     - utilisateur (`DB_USER`)
     - mot de passe (`DB_PASSWORD`)
-

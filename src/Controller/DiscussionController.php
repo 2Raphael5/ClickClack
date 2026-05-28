@@ -14,7 +14,10 @@ class DiscussionController
     {
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
-        $privee = Discussion::selectAllAutorizePrivate($_SESSION["User"]["idUtilisateur"]);
+        $privee = [];
+        if (!empty($_SESSION["User"])) {
+            $privee = Discussion::selectAllAutorizePrivate($_SESSION["User"]["idUtilisateur"]);
+        }
         $public = Discussion::selectAllPublic();
         $data = [
             "discussionsPublic" => $public,
@@ -77,8 +80,6 @@ class DiscussionController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
         $data = [];
-
-        $privee = Discussion::selectAllAutorizePrivate($_SESSION["User"]["idUtilisateur"]);
         $publics = Discussion::selectAllPublic();
 
         $isGood = false;
@@ -88,10 +89,11 @@ class DiscussionController
             }
         }
 
-        if (!$isGood) {
-            foreach (Discussion::selectConnection() as $key => $connection) {
+        if (!$isGood && !empty($_SESSION["User"]["idUtilisateur"])) {
+            $connections = Discussion::selectConnection();
+            foreach ($connections as $key => $connection) {
                 if ($connection["idUtilisateur"] == $_SESSION["User"]["idUtilisateur"] && $connection["idDiscussion"] == $args["idDiscussion"]) {
-                $isGood = true;
+                    $isGood = true;
                 }
             }
         }
@@ -104,9 +106,9 @@ class DiscussionController
                 "discussion" => $discussion,
             ];
         } else {
-        return $response
-            ->withHeader("Location", "/discussion")
-            ->withStatus(302);
+            return $response
+                ->withHeader("Location", "/discussion")
+                ->withStatus(302);
         }
         return $renderer->render($response, 'message.php', $data);
     }
@@ -171,10 +173,10 @@ class DiscussionController
 
         if (intval($args["idDiscussion"]) != 0 && intval($args["idUtilisateur"]) != 0) {
             Discussion::addConnection(intval($args["idDiscussion"]), intval($args["idUtilisateur"]));
-        }       
+        }
 
         return $response
             ->withHeader("Location", "/discussion")
             ->withStatus(302);
     }
-}
+}   

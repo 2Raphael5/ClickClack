@@ -7,6 +7,7 @@
     <title>Click Clack</title>
     <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/img/normale.png" type="image/x-icon">
 </head>
 
 <body>
@@ -25,10 +26,7 @@
                         <a href="/discussion" class="nav-link">Discussions</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/discussion/perso" class="nav-link">Méssage privée</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/publications/add" class="nav-link">Ajouter une publication</a>
+                        <a href="/publication/add" class="nav-link">Ajouter une publication</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

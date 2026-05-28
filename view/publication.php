@@ -7,7 +7,7 @@
 
                     <h4 class="card-title text-center mb-4">Nouvelle publication</h4>
 
-                    <form action="/publications/add" method="post" enctype="multipart/form-data">
+                    <form action="/publication/add" method="post" enctype="multipart/form-data">
 
                         <div class="mb-3">
                             <label for="img" class="form-label">Image</label>

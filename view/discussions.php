@@ -5,8 +5,13 @@
     </div>
 
     <div class="row g-4">
-        
+        <?php
+        if(!empty($discussionsPrivate)){
+        ?>
         <h1>Dicussion privée</h1>
+        <?php
+        }
+        ?>
         <?php foreach ($discussionsPrivate as $discussion): ?>
 
             <div class="col-12 col-sm-6 col-lg-4">
