@@ -8,17 +8,6 @@ var_dump($discussion);
         <h3 class="mb-0">Messages privés</h3>
     </div>
 
-    <!-- Barre de recherche -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Rechercher une personne..."
-            >
-        </div>
-    </div>
-
     <!-- Liste des utilisateurs -->
     <div class="row g-4">
         <?php

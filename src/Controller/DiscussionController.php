@@ -67,7 +67,7 @@ class DiscussionController
         $data = $request->getParsedBody();
         $title = $data['discussion'];
         $isPrivate = 0;
-        if ($data['isPrivate'] != null) {
+        if (!empty($data['isPrivate'])) {
             $isPrivate = 1;
         }
         Discussion::add($title, $isPrivate);
