@@ -36,8 +36,6 @@ class DiscussionController
             return $response
                 ->withHeader("Location", "/")
                 ->withStatus(302);
-        } else {
-            var_dump($_SESSION["User"]);
         }
         return $renderer->render($response, 'ajoutDiscussion.php', []);
 

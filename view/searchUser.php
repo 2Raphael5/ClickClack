@@ -1,6 +1,5 @@
 <div class="container mt-5">
 <?php
-var_dump($discussion);
 ?>
 
     <!-- Header -->
