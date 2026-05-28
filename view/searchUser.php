@@ -1,22 +1,10 @@
 <div class="container mt-5">
 <?php
-var_dump($discussion);
 ?>
 
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="mb-0">Messages privés</h3>
-    </div>
-
-    <!-- Barre de recherche -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Rechercher une personne..."
-            >
-        </div>
     </div>
 
     <!-- Liste des utilisateurs -->

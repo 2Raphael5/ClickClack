@@ -36,8 +36,6 @@ class DiscussionController
             return $response
                 ->withHeader("Location", "/")
                 ->withStatus(302);
-        } else {
-            var_dump($_SESSION["User"]);
         }
         return $renderer->render($response, 'ajoutDiscussion.php', []);
 
@@ -67,7 +65,7 @@ class DiscussionController
         $data = $request->getParsedBody();
         $title = $data['discussion'];
         $isPrivate = 0;
-        if ($data['isPrivate'] != null) {
+        if (!empty($data['isPrivate'])) {
             $isPrivate = 1;
         }
         Discussion::add($title, $isPrivate);
