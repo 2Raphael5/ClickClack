@@ -1,6 +1,6 @@
 <div class="container mt-5">
-<?php
-?>
+    <?php
+    ?>
 
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -10,37 +10,44 @@
     <!-- Liste des utilisateurs -->
     <div class="row g-4">
         <?php
-        foreach ($users as $key => $user) {            
-        ?>
+        foreach ($users as $key => $user) {
+            if ($user != $_SESSION["User"]) {
+                ?>
                 <!-- Utilisateur 1 -->
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body d-flex align-items-center">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex align-items-center">
 
-                    <!-- Avatar -->
-                    <div class="me-3">
-                        <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center">
-                            <img src="/img/<?= htmlspecialchars($user["photoProfile"]) ?>" alt="Photo de profil" class="rounded-circle object-fit-cover img-fluid" style="width: 50px; height: 50px;">
+                            <!-- Avatar -->
+                            <div class="me-3">
+                                <div
+                                    class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center">
+                                    <img src="/img/<?= htmlspecialchars($user["photoProfile"]) ?>" alt="Photo de profil"
+                                        class="rounded-circle object-fit-cover img-fluid" style="width: 50px; height: 50px;">
+                                </div>
+                            </div>
+
+                            <!-- Infos -->
+                            <div class="flex-grow-1">
+                                <h6 class="mb-0"><?= $user["pseudo"] ?></h6>
+                            </div>
+
+                            <!-- Action -->
+                            <div>
+                                <form action=<?= "/discussion/perso/" . $discussion . "/" . $user["idUtilisateur"] ?> method="post">
+                                    <input type="hidden" name="user" value=<?= $user["idUtilisateur"] ?>>
+                                    <button type="submit" class="btn btn-outline-primary btn-sm"> Ajouter</button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
-
-                    <!-- Infos -->
-                    <div class="flex-grow-1">
-                        <h6 class="mb-0"><?= $user["pseudo"]?></h6>
-                    </div>
-
-                    <!-- Action -->
-                    <div>
-                        <form action=<?= "/discussion/perso/".$discussion."/" . $user["idUtilisateur"]?> method="post">
-                        <input type="hidden" name="user" value=<?= $user["idUtilisateur"]?>>
-                        <button type="submit" class="btn btn-outline-primary btn-sm"> Ajouter</button>
-                        </form>
-                    </div>
-
                 </div>
-            </div>
-        </div>
-        <?php
+                <?php
+            }
+            ?>
+
+            <?php
         }
         ?>
     </div>
