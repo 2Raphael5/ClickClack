@@ -14,8 +14,12 @@ class UserController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
 
+        $error = $_SESSION['error_login'] ?? null;
+
+        unset($_SESSION['error_login']);
+
         return $renderer->render($response, 'login.php', [
-            'error' => $_SESSION['error_login'] ?? null
+            'error' => $error
         ]);
     }
 
@@ -25,8 +29,12 @@ class UserController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
 
+        $error = $_SESSION['error_register'] ?? null;
+
+        unset($_SESSION['error_register']);
+
         return $renderer->render($response, 'register.php', [
-            'error' => $_SESSION['error_register'] ?? null
+            'error' => $error
         ]);
     }
 
@@ -133,9 +141,13 @@ class UserController
 
         $user = User::findById((int) $_SESSION['User']['idUtilisateur']);
 
+        $error = $_SESSION['error_profil'] ?? null;
+
+        unset($_SESSION['error_profil']);
+
         return $renderer->render($response, 'profil_edit.php', [
             'user' => $user,
-            'error' => $_SESSION['error_profil'] ?? null
+            'error' => $error
         ]);
     }
 
