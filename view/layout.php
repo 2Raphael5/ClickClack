@@ -7,7 +7,7 @@
     <title>Click Clack</title>
     <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="/img/normale.png" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/img/logo.png">
 </head>
 
 <body>
