@@ -67,7 +67,7 @@ CREATE TABLE `Discussion_Utilisateur` (
 
 CREATE TABLE `Message` (
   `idMessage` int(11) NOT NULL,
-  `text` varchar(255) NOT NULL,
+  `text` varchar(1000) NOT NULL,
   `idDiscussion` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
