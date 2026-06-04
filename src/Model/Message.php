@@ -19,7 +19,12 @@ class Message
         $this->pseudoCreateur = $pseudoCreateur;
     }
 
-        public static function selectAll(int $idDiscussion)
+    /**
+     * selectAll - Sélectionne tous les messages d'une discussion
+     * @param int $idDiscussion
+     * @return array
+     */
+    public static function selectAll(int $idDiscussion)
     {
         $sql = "SELECT m.idMessage, m.text, m.idDiscussion, m.idUtilisateur, u.pseudo  FROM Message m JOIN Utilisateur u ON u.idUtilisateur = m.idUtilisateur WHERE m.idDiscussion = :idDiscussion ORDER BY m.idMessage ASC;";
         $param = [":idDiscussion"=> $idDiscussion];
@@ -33,7 +38,15 @@ class Message
         return $result;
     }
 
-        public static function add(string $text, int $idDiscussion,int $idUtilisateur,){
+    /**
+     * add - Ajoute un message dans une discussion
+     * @param string $text
+     * @param int $idDiscussion
+     * @param int $idUtilisateur
+     * @return void
+     */
+    public static function add(string $text, int $idDiscussion, int $idUtilisateur)
+    {
         $sql = "INSERT INTO Message(text, idDiscussion ,idUtilisateur) VALUE(:text, :idDiscussion, :idCreateur)";
         $param = [
             ":text"=>$text,

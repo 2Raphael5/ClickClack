@@ -20,7 +20,11 @@ class User
     }
 
     /**
-     * Crée un utilisateur dans la base de données
+     * create - Crée un utilisateur dans la base de données
+     * @param string $pseudo
+     * @param string $motDePasse
+     * @param string $photoProfile
+     * @return int
      */
     public static function create(string $pseudo, string $motDePasse, string $photoProfile): int
     {
@@ -38,7 +42,8 @@ class User
     }
 
     /**
-     * Sélectionne tous les utilisateurs
+     * selectAll - Sélectionne tous les utilisateurs
+     * @return array
      */
     public static function selectAll()
     {
@@ -46,6 +51,11 @@ class User
         return Database::run($sql)->fetchAll();
     }
 
+    /**
+     * selectAllNotInPrivate - Sélectionne tous les utilisateurs n'étant pas dans la discussion
+     * @param int $id
+     * @return array
+     */
     public static function selectAllNotInPrivate(int $id)
     {
         $sql = "SELECT u.idUtilisateur, u.pseudo, u.motDePasse, u.photoProfile 
@@ -60,8 +70,11 @@ class User
         ];
         return Database::run($sql, $param)->fetchAll();
     }
+
     /**
-     * Recherche un utilisateur par pseudo
+     * findByPseudo - Recherche un utilisateur par pseudo
+     * @param string $pseudo
+     * @return User|false
      */
     public static function findByPseudo(string $pseudo): User|false
     {
@@ -85,7 +98,9 @@ class User
     }
 
     /**
-     * Recherche un utilisateur par ID
+     * findById - Recherche un utilisateur par ID
+     * @param int $idUtilisateur
+     * @return User|false
      */
     public static function findById(int $idUtilisateur): User|false
     {
@@ -109,7 +124,10 @@ class User
     }
 
     /**
-     * Crée une publication
+     * createPublication - Crée une publication
+     * @param string $image
+     * @param string|null $text
+     * @return void
      */
     public function createPublication(string $image, ?string $text = null)
     {
@@ -126,7 +144,10 @@ class User
     }
 
     /**
-     * Crée un message
+     * createMessage - Crée un message
+     * @param string $text
+     * @param int $idDiscussion
+     * @return void
      */
     public function createMessage(string $text, int $idDiscussion)
     {
@@ -143,7 +164,9 @@ class User
     }
 
     /**
-     * Crée une discussion
+     * createDiscussion - Crée une discussion
+     * @param string $titre
+     * @return void
      */
     public function createDiscussion(string $titre)
     {
@@ -159,11 +182,13 @@ class User
     }
 
     /**
-     * Connecte un utilisateur (pseudo et mot de passe)
+     * login - Connecte un utilisateur (pseudo et mot de passe)
+     * @param string $pseudo
+     * @param string $motDePasse
+     * @return User|false
      */
     public static function login(string $pseudo, string $motDePasse): User|false
     {
-
         $sql = "SELECT idUtilisateur, pseudo, motDePasse, photoProfile
             FROM Utilisateur
             WHERE pseudo = :pseudo;
@@ -172,16 +197,14 @@ class User
         $params = [":pseudo" => $pseudo];
         $data = Database::run($sql, $params)->fetch();
 
-        // Aucun utilisateur
         if ($data === false) {
             return false;
         }
 
-        // Vérification du mot de passe
         if (!password_verify($motDePasse, $data["motDePasse"])) {
             return false;
         }
-        // Création et retour de l'objet User
+
         return new User(
             $data["idUtilisateur"],
             $data["pseudo"],
@@ -191,7 +214,11 @@ class User
     }
 
     /**
-     * Modifie un utilisateur (pseudo, mot de passe, image)
+     * update - Modifie un utilisateur (pseudo, mot de passe, image)
+     * @param string $pseudo
+     * @param string|null $motDePasse
+     * @param string $photoProfile
+     * @return void
      */
     public function update(string $pseudo, ?string $motDePasse, string $photoProfile): void
     {
@@ -223,5 +250,4 @@ class User
 
         Database::run($sql, $params);
     }
-
 }
