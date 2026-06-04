@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 28 mai 2026 à 11:33
+-- Généré le : jeu. 04 juin 2026 à 11:54
 -- Version du serveur : 10.11.14-MariaDB-0ubuntu0.24.04.1
 -- Version de PHP : 8.4.21
 
@@ -67,7 +67,7 @@ CREATE TABLE `Discussion_Utilisateur` (
 
 CREATE TABLE `Message` (
   `idMessage` int(11) NOT NULL,
-  `text` varchar(1000) NOT NULL,
+  `text` text NOT NULL,
   `idDiscussion` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
