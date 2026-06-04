@@ -8,7 +8,13 @@ use Slim\Views\PhpRenderer;
 
 class UserController
 {
-    // Afficher page de connexion
+    /**
+     * Afficher page de connexion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPageConnexion(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -23,7 +29,13 @@ class UserController
         ]);
     }
 
-    // Afficher page d'inscription
+    /**
+     * Afficher page d'inscription
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPageInscription(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -38,7 +50,13 @@ class UserController
         ]);
     }
 
-    // POST d'inscription
+    /**
+     * POST d'inscription
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function register(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
@@ -70,7 +88,13 @@ class UserController
             ->withStatus(302);
     }
 
-    // POST de connexion
+    /**
+     * POST de connexion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function login(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
@@ -104,7 +128,13 @@ class UserController
             ->withStatus(302);
     }
 
-    // Déconnexion
+    /**
+     * Déconnexion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function logout(Request $request, Response $response, array $args): Response
     {
         session_destroy();
@@ -129,7 +159,13 @@ class UserController
         ]);
     }
 
-    // Formulaire de modification
+    /**
+     * Formulaire de modification du profil
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherEditionProfil(Request $request, Response $response, array $args): Response
     {
         if (empty($_SESSION['User'])) {
@@ -151,7 +187,13 @@ class UserController
         ]);
     }
 
-    // Modification profil
+    /**
+     * Modification du profil
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function updateProfil(Request $request, Response $response, array $args): Response
     {
         if (empty($_SESSION['User'])) {

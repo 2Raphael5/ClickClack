@@ -9,7 +9,13 @@ use Slim\Views\PhpRenderer;
 
 class PublicationController
 {
-    //Affiche l'accueil
+    /**
+     * Affiche la page d'ajout d'une publication
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPageAjoutPublication(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -22,6 +28,14 @@ class PublicationController
         return $renderer->render($response, 'publication.php', []);
 
     }
+
+    /**
+     * Vérifie les données du formulaire et ajoute une publication
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function verifierPageAjoutPublication(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -76,6 +90,13 @@ class PublicationController
 
     }
 
+    /**
+     * Supprime une publication
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function supprimerPublication(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");

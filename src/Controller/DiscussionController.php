@@ -10,6 +10,13 @@ use ClickClack\ClickClack\Model\Discussion;
 
 class DiscussionController
 {
+    /**
+     * Affiche la page principale des discussions
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPagePrincipale(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -27,6 +34,13 @@ class DiscussionController
 
     }
 
+    /**
+     * Vérifie l'accès à la page d'ajout de discussion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function verifierDiscussion(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -40,6 +54,14 @@ class DiscussionController
         return $renderer->render($response, 'ajoutDiscussion.php', []);
 
     }
+
+    /**
+     * Affiche la page d'ajout d'une discussion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function ajouterDiscussion(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -52,6 +74,14 @@ class DiscussionController
         return $renderer->render($response, 'ajoutDiscussion.php', []);
 
     }
+
+    /**
+     * Vérifie les données et ajoute une discussion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function verifierAjout(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -73,6 +103,14 @@ class DiscussionController
             ->withHeader("Location", "/discussion")
             ->withStatus(302);
     }
+
+    /**
+     * Affiche les messages d'une discussion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPageMessage(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -110,6 +148,14 @@ class DiscussionController
         }
         return $renderer->render($response, 'message.php', $data);
     }
+
+    /**
+     * Ajoute un message dans une discussion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function ajouterMessage(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -130,6 +176,13 @@ class DiscussionController
             ->withStatus(302);
     }
 
+    /**
+     * Affiche la page de recherche d'utilisateurs
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPageRecherchePersonne(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -141,6 +194,13 @@ class DiscussionController
         return $renderer->render($response, 'searchUser.php', $data);
     }
 
+    /**
+     * Ajoute une discussion privée
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function ajouterDiscussionPerso(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -164,6 +224,14 @@ class DiscussionController
             ->withStatus(302);
 
     }
+
+    /**
+     * Ajoute un utilisateur à une discussion
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function verifierAjoutPersonne(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -177,4 +245,4 @@ class DiscussionController
             ->withHeader("Location", "/discussion")
             ->withStatus(302);
     }
-}   
+}

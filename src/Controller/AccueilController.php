@@ -10,7 +10,13 @@ use ClickClack\ClickClack\Model\Aime;
 
 class AccueilController
 {
-    //Affiche l'accueil
+    /**
+     * Affiche la page principale
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function afficherPagePrincipale(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer("../view");
@@ -22,6 +28,13 @@ class AccueilController
         return $renderer->render($response, 'index.php', $data);
     }
 
+    /**
+     * Ajoute ou retire un j'aime sur une publication
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function like(Request $request, Response $response, array $args): Response
     {
         if (!isset($_SESSION["User"])) {
