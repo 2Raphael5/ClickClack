@@ -46,6 +46,20 @@ class User
         return Database::run($sql)->fetchAll();
     }
 
+    public static function selectAllNotInPrivate(int $id)
+    {
+        $sql = "SELECT u.idUtilisateur, u.pseudo, u.motDePasse, u.photoProfile 
+                FROM Utilisateur u
+                WHERE u.idUtilisateur NOT IN (
+                    SELECT d.idUtilisateur
+                    FROM Discussion_Utilisateur d
+                    WHERE d.idDiscussion = :id
+                );";
+        $param = [
+            "id" => $id,
+        ];
+        return Database::run($sql, $param)->fetchAll();
+    }
     /**
      * Recherche un utilisateur par pseudo
      */
