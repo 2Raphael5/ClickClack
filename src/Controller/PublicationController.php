@@ -22,7 +22,7 @@ class PublicationController
         $renderer->setLayout("layout.php");
         if (empty($_SESSION["User"]) || $_SESSION["User"] == false) {
             return $response
-                ->withHeader("Location", "/")
+                ->withHeader("Location", "/login")
                 ->withStatus(302);
         }
         return $renderer->render($response, 'publication.php', []);

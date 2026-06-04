@@ -188,7 +188,7 @@ class DiscussionController
         $renderer = new PhpRenderer("../view");
         $renderer->setLayout("layout.php");
         $data = [
-            "users" => User::selectAll(),
+            "users" => User::selectAllNotInPrivate(intval($args["idDiscussion"])),
             "discussion" => $args["idDiscussion"]
         ];
         return $renderer->render($response, 'searchUser.php', $data);

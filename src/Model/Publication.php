@@ -21,6 +21,12 @@ class Publication
         $this->pseudoUtilisateur = $pseudoUtilisateur;
     }
 
+    /**
+     * addPublication - Ajoute une publication dans la base de données
+     * @param string $img
+     * @param string $text
+     * @return void
+     */
     public static function addPublication(string $img, string $text)
     {
         $sql = "INSERT INTO Publication(image, text, idUtilisateur) VALUE(:image, :text, :idUtilisateur)";
@@ -32,6 +38,10 @@ class Publication
         Database::run($sql, $param);
     }
 
+    /**
+     * getAllPublication - Sélectionne toutes les publications avec le pseudo de l'auteur
+     * @return array
+     */
     public static function getAllPublication()
     {
         $sql = "SELECT 
@@ -54,6 +64,11 @@ class Publication
         return $result;
     }
 
+    /**
+     * deletePublication - Supprime une publication par son ID
+     * @param int $id
+     * @return void
+     */
     public static function deletePublication(int $id)
     {
         $sql = "DELETE FROM Publication WHERE idPublication = :id";
@@ -63,6 +78,11 @@ class Publication
         Database::run($sql, $param);
     }
 
+    /**
+     * getById - Sélectionne une publication par son ID
+     * @param int $id
+     * @return Publication
+     */
     public static function getById(int $id)
     {
         $sql = "SELECT idPublication, image, text, idUtilisateur FROM Publication WHERE idPublication = :id";
